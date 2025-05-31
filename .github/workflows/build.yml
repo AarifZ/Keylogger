@@ -1,7 +1,7 @@
 name: Build Windows EXE
 
 on:
-  workflow_dispatch:  # This allows manual trigger via GitHub UI
+  workflow_dispatch:
 
 jobs:
   build-windows:
@@ -16,12 +16,11 @@ jobs:
         with:
           platform: x64
 
-      - name: Compile main.cpp to EXE
-        run: |
-          g++ main.cpp -o main.exe
+      - name: Compile main.cpp
+        run: g++ main.cpp -o main.exe
 
-      - name: Upload EXE Artifact
-        uses: actions/upload-artifact@v3
+      - name: Upload EXE
+        uses: actions/upload-artifact@v4
         with:
-          name: windows-exe
+          name: main-exe
           path: main.exe
